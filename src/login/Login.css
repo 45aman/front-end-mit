@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    margin: 0%;
+    padding: 0%;
+    
+}
+
+.bg{
+    position: relative;
+    background-size: cover;
+    background-position: top;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logoL{
+    position: absolute;
+    top: 3%;
+    padding-left: 3%;
+    width: 20vw;
+}
+
+.caard-header{
+    text-align: center;
+}
+
+.caard-img{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+}
+
+
+.logoAL{
+    position: absolute;
+    top: 3%;
+    padding-left: 80%;
+    height: '13vh'
+    
+}
+
+.username{
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 2mm;
+    width: 18vw;
+}
+
+.password{
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 2mm;
+    width: 18vw;
+}
+
+.forgotPass{
+    border: 0ch;
+    font-size: 1vw;
+}
+
+
+
+
+
