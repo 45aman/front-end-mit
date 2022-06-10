@@ -43,7 +43,7 @@ Ans. Yes, it is necessary to fill exam form for internal backlog also.
 
  
 
-    <a href={faq[0]?.link}><button type="button" className="btn btn-light btn-md">READ MORE</button></a>
+    <a href={faq[2]?.link}><button type="button" className="btn btn-light btn-md">READ MORE</button></a>
 
  
   
@@ -64,7 +64,7 @@ Ans. Yes, it is necessary to fill exam form for internal backlog also.
       <p className="question"></p>
       <p></p>
       <div className="text-center">
-  <a href={faq[2]?.link}>  <button type="button" className="btn btn-light btn-md">READ MORE</button></a>
+  <a href={faq[1]?.link}>  <button type="button" className="btn btn-light btn-md">READ MORE</button></a>
 
     </div>
       
@@ -81,7 +81,7 @@ Ans. Yes, it is necessary to fill exam form for internal backlog also.
     <p className="question">Qs. I am a student of MITSOB. I want a transcript. What is the procedure?</p>
       <p>Ans. Send scan copies of mark sheets of both years and screenshot of payment for transcript to exam.helpdesk@mitwpu.edu.in. The payment details mentioned on the website (https://mitwpu.edu.in/examination)</p>
       <div className="text-center">
-    <a></a><button type="button" className="btn btn-light btn-md">READ MORE</button>
+    <a href={faq[3]?.link}><button type="button" className="btn btn-light btn-md">READ MORE</button></a>
 
     </div>
     </div>
@@ -93,7 +93,7 @@ Ans. Yes, it is necessary to fill exam form for internal backlog also.
     <p className="question">Q. I have paid exam fees twice. How do I apply for refund of the exam fees?</p>
       <p>Ans. Send an application to exam.helpdesk@mitwpu.edu.in along with Bank Details (Name, Bank Name, Branch, Account number, IFSC code) and transaction details as well as screenshots of a cancelled cheque .</p>
       <div className="text-center">
-    <button type="button" className="btn btn-light btn-md">READ MORE</button>
+    <a href={faq[4]?.link}><button type="button" className="btn btn-light btn-md">READ MORE</button></a>
 
     </div>
     </div>
@@ -106,7 +106,7 @@ Ans. Yes, it is necessary to fill exam form for internal backlog also.
     <p className="question">Q. What is the procedure to obtain a photocopy of answer booklet?</p>
       <p>Ans. Pay the required fee at Department of Examination and fill student assistance form. Photocopy will be made available within two days when revaluation dates are declared.</p>
       <div className="text-center">
-    <button type="button" className="btn btn-light btn-md">READ MORE</button>
+    <a href={faq[5]?.link}><button type="button" className="btn btn-light btn-md">READ MORE</button></a>
 
     </div>
     </div>

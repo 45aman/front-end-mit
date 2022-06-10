@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Logo from '../img/logo.png'
 import '../Stud Ass/OffTr.css'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
 import axios from "axios";
 
 
@@ -10,6 +10,7 @@ const RegStu = () => {
 
 
 
+  const nevigate = useNavigate()
 
  
   const [student, setSudent] = useState({
@@ -19,7 +20,6 @@ const RegStu = () => {
    
     password: "",
     reEnterPassword: "",
-    program: "",
     specialization: "",
     mobile: "",
     email: "",
@@ -37,11 +37,13 @@ const RegStu = () => {
   }
 
   const register = () => {
-    const { studentname, fathername, prn,  password, reEnterPassword, program, specialization, mobile, email,
+    const { studentname, fathername, prn,  password, reEnterPassword,  specialization, mobile, email,
      } = student
-    if( studentname && fathername && prn   && password && (password===reEnterPassword ) && program && specialization && mobile && email){
+    if( studentname && fathername && prn   && password && (password===reEnterPassword )  && specialization && mobile && email){
       axios.post("http://localhost:4000/register", student)  
       .then(res => console.log(res))
+      nevigate("/loginstudent")
+
     }else{
        alert("invalid input")
     }
@@ -97,38 +99,6 @@ const RegStu = () => {
                                <div className="invalid-feedback">Password cannot be blank!</div>
                             </div>    
 
-                            <div className="col-md-12">
-                                <select className="form-select mt-3" required name="program" value={student.program} onChange={handlechange} >
-                                      <option selected disabled value="">Engineering and Technology</option>
-            <option>Commerce</option>
-            <option>Commerce & Economics</option>
-            <option>Consciousness</option>
-            <option>Design</option>
-            <option>Economics</option>
-            <option>Education</option>
-            <option>Engineering and Technology</option>
-            <option>Fine arts, Media and Journalism</option>
-            <option>Governance</option>
-            <option>Government</option>
-            <option>Law</option>
-            <option>Liberal Arts</option>
-            <option>Liberal Arts, Science and Commerce</option>
-            <option>Management</option>
-            <option>Management UG</option>
-            <option>Peace Studies</option>
-            <option>Pharmacy</option>
-            <option>Science</option>
-            <option>Sustainability Studies</option>
-            <option>Tourism Studies</option>
-            <option>Visual Arts, Media and Journalism</option>
-            <option>MAEER Pune - RO</option>
-            <option>MIT School of Business</option>
-            <option>MIT-WPU HO</option>
-            <option>School of polytechnic & Skill Development</option>
-                               </select>
-                                <div className="valid-feedback">You selected a position!</div>
-                                <div className="invalid-feedback">Please select a position!</div>
-                           </div>
 
                                                     <div className="col-md-12">
                                 <select className="form-select mt-3" required name="specialization" value={student.specialization} onChange={handlechange} >

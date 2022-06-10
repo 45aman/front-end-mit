@@ -29,17 +29,25 @@ function LoginStu() {
     })
   }
 
+  const [studentId, setStudentID] = useState(null);
+
+
   const loginstudent = () => {
     axios.post("http://localhost:4000/loginstudent", student)
     .then(res => {
-      alert(res.data.message)
       if(res.data.message === "Login Sucessfull" ){
-        nevigate("/home")
+        nevigate( "/home", { state: { id: 1, name: student.prn } })
       }else{
         nevigate("/")
       }
     })
   }
+
+
+
+
+
+
     return (
       <>
       <div className='container'>

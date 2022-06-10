@@ -136,7 +136,6 @@ const getAllStu = () =>{
     .then((res)=>{
         const allStu = res.data;
         getStu(allStu);
-        console.log(allStu);
     }) 
 .catch(error => console.error(`Error: $(error`));
 }
@@ -186,7 +185,7 @@ const getAllStu = () =>{
                                 <TableCell>{phase.trino}</TableCell>
                                 <TableCell>{phase.reason}</TableCell>
                                 <TableCell>{phase.date}</TableCell>
-                                <TableCell>            <a href="https://web.whatsapp.com/"><button className="btn"><strong className="item">whatsapp <FontAwesomeIcon icon={faSms} className="icon" /></strong></button></a>
+                                <TableCell>            <a href="https://web.whatsapp.com/"><button classNameName="btn"><strong classNameName="item">whatsapp <FontAwesomeIcon icon={faSms} classNameName="icon" /></strong></button></a>
 </TableCell>
 
                             </TableRow>
@@ -204,7 +203,7 @@ const getAllStu = () =>{
 
 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
-                    className="download-table-xls-button"
+                    classNameName="download-table-xls-button"
                     table="table-to-xls"
                     filename="tablexls"
                     sheet="tablexls"

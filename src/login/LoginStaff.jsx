@@ -31,7 +31,7 @@ function LoginStaff() {
           .then(res => {
               alert(res.data.message)
               if (res.data.message === "Login Sucessfull") {
-                  nevigate("/Sthome")
+                  nevigate("/Sthome",{ state: { id: 1, name: staff.sfprn } })
               } else {
                   nevigate("/")
               }

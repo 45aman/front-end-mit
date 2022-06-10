@@ -15,11 +15,14 @@ import NCDC from '../img/NCDC.svg'
 import NCGC from '../img/NCGC.svg'
 import OQ from '../img/OQ.svg'
 import BS from '../img/BS.svg'
+import CC from '../img/complition.svg'
 import { Link } from 'react-router-dom'
 
 
 
 const StuAs = (props) => {
+
+   
     return (
         <>
        <div className="menu">
@@ -55,9 +58,9 @@ const StuAs = (props) => {
         </div>
         <div className="col-sm-3">
             <div className="card">
-                <img className="card-img-top img-fluid mb-5" style={{height:"47%"}}  src={BS} alt=" "/>
+                <img className="card-img-top img-fluid mb-5" style={{height:"47%"}}  src={CC} alt=" "/>
                 <div className="card-block">
-                <Link to={props.baclogsummary}> <p className="card-text">BACKLOG SUMMARY</p></Link>
+                <Link to={props.programcc}> <p className="card-text">PROGRAM COMPLITION CERTIFICATE</p></Link>
                    
                 </div>
             </div>
@@ -74,7 +77,7 @@ const StuAs = (props) => {
         </div>
     </div>
     
-    <div className="row pt-5   ">
+    <div className="row    ">
         <div className="col-sm-3">
             <div className="card">
             <img className="card-img-top img-fluid mb-5"  style={{height:"47%"}}  src={EC} alt=" "/>
@@ -87,14 +90,14 @@ const StuAs = (props) => {
         </div>
         <div className="col-sm-3">
             <div className="card">
-            <img className="card-img-top img-fluid mb-5" style={{height:"47%"}} src={TSC} alt=" "/>
-
+                <img className="card-img-top img-fluid mb-5" style={{height:"47%"}}  src={BS} alt=" "/>
                 <div className="card-block">
-                <Link to={props.tritosem}>  <p className="card-text">TRIMESTER TO SEMESTER CONVERSION</p></Link>
-                    
+                <Link to={props.baclogsummary}> <p className="card-text">BACKLOG SUMMARY</p></Link>
+                   
                 </div>
             </div>
         </div>
+        
         <div className="col-sm-3">
             <div className="card">
             <img className="card-img-top img-fluid mb-5" style={{height:"47%"}} src={MOI} alt=" "/>
@@ -117,7 +120,7 @@ const StuAs = (props) => {
 
         </div>
         
-        <div className="row pt-5">
+        <div className="row ">
         <div className="col-sm-3">
             <div className="card">
                 <img className="card-img-top img-fluid mb-5" style={{height:"47%"}} src={DGC} alt=" "/>
@@ -155,7 +158,17 @@ const StuAs = (props) => {
 
         </div>
         
-        <div className="row pt-5  pb-5">
+        <div className="row  pb-5">
+        <div className="col-sm-3">
+            <div className="card">
+            <img className="card-img-top img-fluid mb-5" style={{height:"47%"}} src={TSC} alt=" "/>
+
+                <div className="card-block">
+                <Link to={props.tritosem}>  <p className="card-text">TRIMESTER TO SEMESTER CONVERSION</p></Link>
+                    
+                </div>
+            </div>
+        </div>
         <div className="col-sm-3">
             <div className="card">
                 <img className="card-img-top img-fluid mb-5" style={{height:"47%"}} src={WES} alt=" "/>

@@ -1,16 +1,17 @@
 import React, {useState} from 'react'
 import Logo from './logo.png'
 import './TT.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
-
-
 
 const TTAdd = () => {
 
+  const nevigate = useNavigate()
 
     const [timetable, setTimetable] = useState({
         department: "",
+        year:"",
+        program:"",
         trimester: "",
         type: "",
         date:"",
@@ -27,10 +28,12 @@ const TTAdd = () => {
 
 
   const upload = () => {
-    const { department, trimester, type, date,  ttfile} = timetable
-    if(department && trimester && type && date && ttfile){
+    const { department,year, trimester, program,  type, date,  ttfile} = timetable
+    if(department && year && trimester && program && type && date && ttfile){
       axios.post("http://localhost:4000/timetableadd", timetable)  
       .then(res => console.log(res))
+      nevigate("/Sttimetable")
+
     }else{
        alert("invalid input")
     }
@@ -57,8 +60,41 @@ const TTAdd = () => {
                         <h3>ADD TIMETABLE</h3>
                         <form className="requires-validation" noValidate>
 
+                        <div className="col-md-12">
+                                <select className="form-select mt-3" required name="department" value={timetable.department} onChange={handlechange} >
+                                      <option selected disabled value="">Engineering and Technology</option>
+            <option>Commerce</option>
+            <option>Commerce & Economics</option>
+            <option>Consciousness</option>
+            <option>Design</option>
+            <option>Economics</option>
+            <option>Education</option>
+            <option>Engineering and Technology</option>
+            <option>Fine arts, Media and Journalism</option>
+            <option>Governance</option>
+            <option>Government</option>
+            <option>Law</option>
+            <option>Liberal Arts</option>
+            <option>Liberal Arts, Science and Commerce</option>
+            <option>Management</option>
+            <option>Management UG</option>
+            <option>Peace Studies</option>
+            <option>Pharmacy</option>
+            <option>Science</option>
+            <option>Sustainability Studies</option>
+            <option>Tourism Studies</option>
+            <option>Visual Arts, Media and Journalism</option>
+            <option>MAEER Pune - RO</option>
+            <option>MIT School of Business</option>
+            <option>MIT-WPU HO</option>
+            <option>School of polytechnic & Skill Development</option>
+                               </select>
+                                <div className="valid-feedback">You selected a position!</div>
+                                <div className="invalid-feedback">Please select a position!</div>
+                           </div>
+
                             <div className="col-md-12">
-                               <input className="form-control" type="text" name="department"  value={timetable.department} placeholder="DEPARTMENT NAME " required  onChange={handlechange}   />
+                               <input className="form-control" type="text" name="year"  value={timetable.year} placeholder="YEAR" required  onChange={handlechange}   />
                                <div className="valid-feedback">name field is valid!</div>
                                <div className="invalid-feedback">name field cannot be blank!</div>
                             </div>
@@ -69,6 +105,12 @@ const TTAdd = () => {
                                <div className="invalid-feedback">name field cannot be blank!</div>
                             </div>
                               
+
+                            <div className="col-md-12">
+                               <input className="form-control" type="text" name="program"  value={timetable.program} placeholder="PROGRAM NAME " required  onChange={handlechange}   />
+                               <div className="valid-feedback">name field is valid!</div>
+                               <div className="invalid-feedback">name field cannot be blank!</div>
+                            </div>
 
                             <div className="col-md-12">
                                 <select className="form-select mt-3" required name="type"  value={timetable.type} onChange={handlechange} >

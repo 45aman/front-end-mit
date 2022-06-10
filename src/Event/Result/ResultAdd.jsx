@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import Logo from '../StTimetable/logo.png'
 import '../StTimetable/TT.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 
 
 
 const TTAdd = () => {
+
+  const nevigate = useNavigate()
 
 
     const [result, setResult] = useState({
@@ -30,6 +32,8 @@ const TTAdd = () => {
     if(department && trimester && type && date ){
       axios.post("http://localhost:4000/resultadd", result)  
       .then(res => console.log(res))
+      nevigate("/stresult")
+
     }else{
        alert("invalid input")
     }

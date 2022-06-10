@@ -66,21 +66,18 @@ TIMETABLE    </span>
   </div>
 </nav>
 
-<div className='mt-5'>
-    <div className='bg-img' >
-    <div class="row ">
-    <div class="col-3"></div>
-    <div class="col-8">
-        <div className='add_btn mt-2'>
+
+        <div className='add_btn mt-5'>
         </div>
 
         <div>
         <table className="table">
   <thead className="thead-dark">
     <tr className='table-dark'>
-      <th scope="col">SR</th>
       <th scope="col">DEPARTMENT</th>
+      <th scope="col">YEAR</th>
       <th scope="col">TRIMESTER</th>
+      <th scope="col">PROGRAM</th>
       <th scope="col">TYPE</th>
       <th scope="col">DATE</th>
 
@@ -94,9 +91,10 @@ TIMETABLE    </span>
   {this.state.timetables.map((element)=>(
 
       <tr>
-      <th scope="row">{element.id}</th>
       <td>{element.department}</td>
+      <td>{element.year}</td>
       <td>{element.trimester}</td>
+      <td>{element.program}</td>
       <td>{element.type}</td>
       <td>{element.date}</td>
 
@@ -117,10 +115,7 @@ TIMETABLE    </span>
         <div class="col-1" >
 
         </div>
-    </div>
-    </div>
-    </div>
-</div>
+  
 
     </>
   )

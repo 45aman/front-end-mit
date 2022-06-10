@@ -39,6 +39,8 @@ export default class StTT extends React.Component  {
     
         const timetables = this.state.timetables.filter(item => item.id !== id);  
         this.setState({ timetables });  
+        window.location.reload(false);
+
       })  
     
   }  
@@ -82,13 +84,17 @@ TIMETABLE    </span>
                     sheet="tablexls"
                     buttonText="Download as XLS"/>
 
+
         <div>
+        <br/>
+
         <table className="table" id="table-to-xls">
   <thead className="thead-dark">
     <tr className='table-dark'>
-      <th scope="col">SR</th>
       <th scope="col">DEPARTMENT</th>
+      <th scope="col">YEAR</th>
       <th scope="col">TRIMESTER</th>
+      <th scope="col">PROGRAM</th>
       <th scope="col">TYPE</th>
       <th scope="col">DATE</th>
 
@@ -102,9 +108,10 @@ TIMETABLE    </span>
   {this.state.timetables.map((element)=>(
 
       <tr>
-      <th scope="row">{element.id}</th>
       <td>{element.department}</td>
+      <td>{element.year}</td>
       <td>{element.trimester}</td>
+      <td>{element.program}</td>
       <td>{element.type}</td>
       <td>{element.date}</td>
 

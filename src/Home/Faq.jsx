@@ -109,10 +109,10 @@ TIMETABLE    </span>
   <tbody>
 
   
-  {this.state.faqs.map((element)=>(
+  {this.state.faqs.map((faq)=>(
 <Fragment>
      <EditOnlyFaq />
-      <ReadOnlyFaq element={element} />
+      <ReadOnlyFaq faq={faq} />
       </Fragment>
 
     ))}

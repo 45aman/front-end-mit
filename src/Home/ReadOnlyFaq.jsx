@@ -12,7 +12,7 @@ const ReadOnlyFaq = ({faq, handleEditClick}) => {
      
       <td className='d-flex justify-content-between'>
        <a  href={faq.link}> <button className="btn"><FontAwesomeIcon icon={faEye} className="icon" /></button></a>
-       </td>
+      </td>
        <td>
      <button className="btn" onClick={(event)=>handleEditClick(event, faq, faq._id)}><FontAwesomeIcon icon={faPenToSquare} className="icon" /></button>
 

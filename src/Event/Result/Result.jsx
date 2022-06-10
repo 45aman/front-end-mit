@@ -62,7 +62,7 @@ render (){
       </li>
     </ul>
     <span className="navbar-text">
-TIMETABLE    </span>
+RESULT    </span>
   </div>
 </nav>
 
@@ -74,7 +74,6 @@ TIMETABLE    </span>
         <table className="table">
   <thead className="thead-dark">
     <tr className='table-dark'>
-      <th scope="col">SR</th>
       <th scope="col">DEPARTMENT</th>
       <th scope="col">TRIMESTER</th>
       <th scope="col">TYPE</th>
@@ -89,7 +88,6 @@ TIMETABLE    </span>
   {this.state.results.map((element)=>(
 
       <tr>
-      <th scope="row">{element.id}</th>
       <td>{element.department}</td>
       <td>{element.trimester}</td>
       <td>{element.type}</td>

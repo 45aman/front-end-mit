@@ -21,7 +21,7 @@ export default class StResult extends React.Component  {
   componentDidMount() {  
     axios.get(`http://localhost:4000/getresultdata`)  
       .then(res => {  
-        const results = res.data;  
+        const results = res.data.reverse();  
         this.setState({ results });  
       })  
   }  
@@ -36,7 +36,9 @@ export default class StResult extends React.Component  {
         console.log(res.data);  
     
         const results = this.state.results.filter(item => item.id !== id);  
-        this.setState({ results });  
+        this.setState({ results }); 
+        window.location.reload(false);
+ 
       })  
     
   }  
@@ -61,8 +63,7 @@ render (){
         <a className="nav-link" href="#"></a>
       </li>
     </ul>
-    <span className="navbar-text">
-TIMETABLE    </span>
+    <span className="navbar-text"> RESULT    </span>
   </div>
 </nav>
 
@@ -76,7 +77,6 @@ TIMETABLE    </span>
         <table className="table">
   <thead className="thead-dark">
     <tr className='table-dark'>
-      <th scope="col">SR</th>
       <th scope="col">DEPARTMENT</th>
       <th scope="col">TRIMESTER</th>
       <th scope="col">TYPE</th>
@@ -92,7 +92,6 @@ TIMETABLE    </span>
   {this.state.results.map((element)=>(
 
       <tr>
-      <th scope="row">{element.id}</th>
       <td>{element.department}</td>
       <td>{element.trimester}</td>
       <td>{element.type}</td>

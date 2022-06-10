@@ -21,7 +21,7 @@ export default class Convo extends React.Component  {
   componentDidMount() {  
     axios.get(`http://localhost:4000/getconvodata`)  
       .then(res => {  
-        const convos = res.data;  
+        const convos = res.data.reverse();  
         this.setState({ convos });  
       })  
   }  
@@ -37,6 +37,8 @@ export default class Convo extends React.Component  {
     
         const convos = this.state.convos.filter(item => item.id !== id);  
         this.setState({ convos });  
+        window.location.reload(false);
+
       })  
     
   }  
@@ -62,7 +64,7 @@ render (){
       </li>
     </ul>
     <span className="navbar-text">
-TIMETABLE    </span>
+CONVOCATION    </span>
   </div>
 </nav>
 
@@ -76,13 +78,11 @@ TIMETABLE    </span>
         <table className="table">
   <thead className="thead-dark">
     <tr className='table-dark'>
-      <th scope="col">SR</th>
       <th scope="col">DEPARTMENT</th>
       <th scope="col">DATE</th>
       <th scope="col">TIME</th>
       <th scope="col">VENUE</th>
 
-      <th scope="col">INVITATION</th>
       <th scope="col"></th>
 
 
@@ -94,14 +94,12 @@ TIMETABLE    </span>
   {this.state.convos.map((element)=>(
 
       <tr>
-      <th scope="row">{element.id}</th>
       <td>{element.department}</td>
       <td>{element.date}</td>
       <td>{element.time}</td>
       <td>{element.venue}</td>
 
       <td className='d-flex justify-content-between'>
-       <a  href={element.invitation}> <button className="btn"><FontAwesomeIcon icon={faEye} className="icon" /></button></a>
       
         <button className="btn" onClick={(e) => this.deleteRow(element._id, e)}><FontAwesomeIcon icon={faTrashCan} className="icon"/></button>
       </td>

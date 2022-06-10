@@ -15,16 +15,20 @@ import SI from '../img/SI.svg'
 import Navbar from './Navbar';
 import './Home.css';
 import Card from './Card'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 
 const Home = (props) => {
 
-  
+  const location = useLocation();
+
     return (<>
 
 
-<Navbar FAQ={props.Faq} WHATSAPP={props.whatsapp}/>
+<Navbar FAQ={props.Faq} WHATSAPP={props.whatsapp} Email={props.email} PRN={location.state.name}/>
+
+
+
 
 <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
 
@@ -88,7 +92,7 @@ const Home = (props) => {
   <h4 className="card-title">EXAMINATION ORDINANCE</h4>
   
   <p className="card-text">Rules and Regulations regarding examinations.</p>
-  <button type="button" className="btn btn-light btn-md">READ MORE</button>
+  <button type="button" className="btn btn-light btn-md"><a href="https://drive.google.com/file/d/1if1PWigm8PsE-T1LUVkmU98DtUJyZPmH/view?usp=sharing">READ MORE</a></button>
 
 
 
@@ -107,14 +111,14 @@ const Home = (props) => {
   <p className="card-text">A centralized Web-based application called "Divyangjan Support" to cater to all the
 specific needs of specially abled students in the university through a one-stop
 application portal.</p>
-  <button type="button" className="btn btn-light btn-md">APPLY</button>
+ <Link to="/divyangjan"> <button type="button" className="btn btn-light btn-md">APPLY</button></Link>
   </div></div>
   <div className="cArd"><div style={{backgroundColor:'#53A5CC'}}>
   <img className="card-img-top" src={SI} alt="Card image cap"/>
-  <h4 className="card-title">STUDENT EXAM INSTRUCTION MANUAL</h4>
+  <h4 className="card-title"><a to="">STUDENT EXAM INSTRUCTION MANUAL</a></h4>
   
   <p className="card-text">Instructions for online digital examination & guidelines regarding examinations and student assistance. </p>
-  <button type="button" className="btn btn-light btn-md">APPLY</button>
+  <button type="button" className="btn btn-light btn-md"><a href="https://drive.google.com/file/d/1Q0rmKQEOs9KFoIN77ET8LO-B8I6of0A4/view?usp=sharing">READ MORE</a></button>
 
   </div></div>
   <div className="cArd"><div style={{backgroundColor:'#97C26B'}}>
@@ -451,7 +455,7 @@ Saturday- 11.00 am to 1.00 pm</p>
     <div className="col-lg-3 col-xs-12 links">
       <h4 className="mt-lg-0 mt-sm-3">LINKEDIN</h4>
         <ul className="m-0 p-0">
-          <li>- <a href="#">Lorem ipsum</a></li>
+          <li>- <a href="https://www.linkedin.com/in/aman-shaikh-671b60226">Aman Shaikh</a></li>
           <li>- <a href="#">Nam mauris velit</a></li>
           <li>- <a href="#">Etiam vitae mauris</a></li>
           <li>- <a href="#">Fusce scelerisque</a></li>

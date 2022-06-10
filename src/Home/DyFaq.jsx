@@ -24,6 +24,7 @@ const DyFaq = () => {
 const [faq, getFaq]= useState([]);
 
 const [EditFaqData, setEditData] = useState({
+  id:"",
       title: "",
         link: "",
 })
@@ -49,6 +50,7 @@ const handleEditClick = (event, faq)=>{
     setEditFaqID(faq._id);
 
     const faqValues ={
+      id: faq.id,
       title: faq.title,
         link: faq.link,
     }

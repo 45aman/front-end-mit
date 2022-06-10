@@ -1,21 +1,28 @@
-import React, {Component} from 'react';
+import React, {Component, useState , useEffect} from 'react';
 import Logo from './logo.png'
 import '../OffTr.css'
 import i1 from './designer.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
 
 class Certificates extends Component {
+
+
     constructor(){
         super()
         this.state = {
             prn:'',
+            mobileno:'',
+            gmail:'',
             trino:'',
             reason:''
         }
         this.changePRN = this.changePRN.bind(this)
+        this.changeMOBILENO = this.changeMOBILENO.bind(this)
+        this.changeGMAIL = this.changeGMAIL.bind(this)
+
         this.changeTriNo = this.changeTriNo.bind(this)
         this.changeReason = this.changeReason.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -24,6 +31,17 @@ class Certificates extends Component {
     changePRN(event){
         this.setState({
             prn:event.target.value
+        })
+    }
+
+    changeMOBILENO(event){
+        this.setState({
+            mobileno:event.target.value
+        })
+    }
+    changeGMAIL(event){
+        this.setState({
+            gmail:event.target.value
         })
     }
     changeTriNo(event){
@@ -43,6 +61,8 @@ class Certificates extends Component {
 
         const submitted = {
             prn: this.state.prn,
+            mobileno: this.state.mobileno,
+            gmail: this.state.gmail,
             trino: this.state.trino,
             reason: this.state.reason
         }                                      
@@ -50,8 +70,11 @@ class Certificates extends Component {
         axios.post('http://localhost:4000/app/Certificates', submitted)
         .then(response => console.log(response.data))
 
+
         this.setState({
             prn:'',
+            mobileno:'',
+            gmail:'',
             trino:'',
             reason:''
         })
@@ -59,15 +82,66 @@ class Certificates extends Component {
 
 
 render(){
+
+    
+    function loadScript(src) {
+        return new Promise(resolve => {
+            const script = document.createElement('script')
+            script.src = src
+            document.body.appendChild(script)
+            script.onload = () => {
+                resolve(true)    
+            }
+            script.onerror = () => {
+                resolve(false)
+            }
+            document.body.appendChild(script)
+        })
+    }
+
+    const _DEV_ = document.domain === 'localhost'
+
+    async function displayRazorpay() {
+
+        const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+        if(!res){
+            alert('Razorpay SDK failed to load. Check your internet connection')
+            return
+        }
+
+        const data = await fetch('http://localhost:4000/razorpay' , { method : 'POST' }) 
+        .then((t) => t.json ()
+        )    
+
+        console.log(data)
+
+        const options = {
+            key: _DEV_ ? 'rzp_test_NCgVjDkvV1r7jm' : 'API_NOT_AVAILABLE',
+            currency: data.currency,
+            amount: data.amount.toString(),
+            order_id: data.id, 
+            name: "MITWPU Exam Dept",
+            description: "Test Transaction",
+            image: "",
+            handler: function (response){
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature)
+            }
+        };
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
     return (
        <>
        <div className="menu">
        <div className="logo pb-5">
-       <img src={Logo} alt="..."     width="250vw"/>
+       <img src={Logo} alt="..."     style={{width:"17vw"}}/>
        </div>
 
        <div className="title">
-        <Link to="/studentassistance"><h1 style={{ color: "white" }}>STUDENT ASSISTANCE</h1></Link>
+       <Link to="/studentassistance"><h1 style={{fontSize:"2.5vw", color:"white", textDecorationLine:"none"}}>STUDENT ASSISTANCE</h1></Link>
        </div>
 
 <div className="contain">
@@ -80,7 +154,7 @@ render(){
             <div className="form-holder">
                 <div className="form-content">
                     <div className="form-items" onSubmit={this.onSubmit}>
-                        <h3>Certificates</h3>
+                        <h3>CERTIFICATES</h3>
                         <p>Fill in the data below.</p>
                         <form className="requires-validation" novalidate>
 
@@ -90,6 +164,24 @@ render(){
                                 onChange={this.changePRN} value={this.state.prn} required/>
                                <div className="valid-feedback">PRN field is valid!</div>
                                <div className="invalid-feedback">PRN field cannot be blank!</div>
+                               </label>
+                            </div>
+                            <br/>
+                            <div className="col-md-12">
+                                <label> MOBILE NO: 
+                               <input className="form-control" type="text" name="mobileno" placeholder="ENTER MOBILE NO"
+                                onChange={this.changeMOBILENO} value={this.state.mobileno} required/>
+                               <div className="valid-feedback">mobileno field is valid!</div>
+                               <div className="invalid-feedback">mobileno field cannot be blank!</div>
+                               </label>
+                            </div>
+                            <br/>
+                            <div className="col-md-12">
+                                <label> GMAIL: 
+                               <input className="form-control" type="text" name="gmail" placeholder="ENTER GMAIL"
+                                onChange={this.changeGMAIL} value={this.state.gmail} required/>
+                               <div className="valid-feedback">GMAIL field is valid!</div>
+                               <div className="invalid-feedback">GMAIL field cannot be blank!</div>
                                </label>
                             </div>
 <br/>
@@ -104,7 +196,7 @@ render(){
 <br/>
                             <div className="col-md-12">
                                 <label> Reason for Application of this certificate
-                               <select className="form-control" type="text" name="reason"
+                               <select  className="form-control" type="text" name="reason"
                                 onChange={this.changeReason} value={this.state.reason} required>
                                     <option select disabled value="">Select reason of application of this Certificate.</option>
                                     <option>Program Completion Certificate</option>
@@ -118,8 +210,7 @@ render(){
                             </div>                       
                 
                             <div className="form-button mt-3">
-                            <button className="btn btn-info" id="submit" type="submit" value='Submit'>SUBMIT</button>
-                            </div>
+                            <button className="btn btn-info" id="submit" type="submit" value='Submit' onClick={displayRazorpay} >Proceed To Payment</button>                            </div>
                         </form>
                     </div>
                 </div>
@@ -138,9 +229,14 @@ render(){
 
 </div>
 
-<div className="back">
+<div className="back" style={ {width:"35vw", backgroundColor:"black" ,padding:"2vw", marginLeft:"-10vw"}}>
 <div className="stats">
-   <p className="faq">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+<p className="question">Q. I need to submit a Course completion / Bonafide in my Company. What is the procedure?</p>
+    <p>Ans. Submit your query on Google form (Link - <a>https://forms.gle/EbsrT87114AD14HY9</a>) under ‘Program Completion Certificate’ </p>
+<p className="question">Q. In how many days, can I get the Certificate?</p>
+   <p className="faq">Ans. Processing requires minimum 5 working days from date of application. Once it is ready, you will be notified on mail.
+ </p>
+ <button className="btn btn-light"><a href="https://drive.google.com/file/d/1YC-nn3TlMiuPUzZcnhJ6lsSOHmkFciTy/view?usp=sharing">READ MORE</a></button>
 
    </div>
 </div>
@@ -165,7 +261,7 @@ render(){
 
        <div>
 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-    <div class="container text-center">
+    <div className="container text-center">
       <small>©2022.MITWPUEXAMDEPARTMENT.</small>
     </div>
   </footer>
